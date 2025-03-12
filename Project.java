@@ -6,9 +6,14 @@ import java.awt.event.*;
 
 public class Project extends JFrame implements ActionListener{
     
-    Project(){
+    String atype;
+            
+    Project(String atype){
         
         super("Electricity Billing System");
+        
+        this.atype = atype;
+        
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/elect1.jpg"));
@@ -23,7 +28,6 @@ public class Project extends JFrame implements ActionListener{
         JMenu master = new JMenu("Master");
         master.setForeground(Color.BLUE);
         master.setFont(new Font("monospaced", Font.BOLD, 15));
-        mb.add(master);
         
         JMenuItem newcustomer = new JMenuItem("Add New Customer");
         newcustomer.setFont(new Font("monospaced", Font.BOLD, 12));
@@ -69,7 +73,6 @@ public class Project extends JFrame implements ActionListener{
         JMenu info = new JMenu("Information");
         info.setForeground(Color.red);
         info.setFont(new Font("monospaced", Font.BOLD, 15));
-        mb.add(info);
         
         JMenuItem updateinfo = new JMenuItem("Update Info");
         updateinfo.setFont(new Font("monospaced", Font.BOLD, 12));
@@ -93,7 +96,6 @@ public class Project extends JFrame implements ActionListener{
         JMenu user = new JMenu("User");
         user.setForeground(Color.red);
         user.setFont(new Font("monospaced", Font.BOLD, 15));
-        mb.add(user);
         
         JMenuItem paybill = new JMenuItem("Pay Bill");
         paybill.setFont(new Font("monospaced", Font.BOLD, 12));
@@ -117,7 +119,6 @@ public class Project extends JFrame implements ActionListener{
         JMenu report = new JMenu("Report");
         report.setForeground(Color.red);
         report.setFont(new Font("monospaced", Font.BOLD, 15));
-        mb.add(report);
         
         JMenuItem generatebill = new JMenuItem("Generate Bill");
         generatebill.setFont(new Font("monospaced", Font.BOLD, 12));
@@ -132,7 +133,6 @@ public class Project extends JFrame implements ActionListener{
         JMenu utility = new JMenu("Utility");
         utility.setForeground(Color.black);
         utility.setFont(new Font("monospaced", Font.BOLD, 15));
-        mb.add(utility);
         
         JMenuItem notepad = new JMenuItem("Notepad");
         notepad.setFont(new Font("monospaced", Font.BOLD, 12));
@@ -156,7 +156,6 @@ public class Project extends JFrame implements ActionListener{
         JMenu exit = new JMenu("Exit");
         exit.setForeground(Color.black);
         exit.setFont(new Font("monospaced", Font.BOLD, 15));
-        mb.add(exit);
         
         JMenuItem logout = new JMenuItem("LogOut");
         logout.setFont(new Font("monospaced", Font.BOLD, 12));
@@ -166,6 +165,17 @@ public class Project extends JFrame implements ActionListener{
         ImageIcon i15 = new ImageIcon(Image12);
         logout.setIcon(i15);
         exit.add(logout);
+        
+        if(atype.equals("Admin")){
+            mb.add(master);
+        }else{
+            mb.add(info);
+            mb.add(user);
+            mb.add(report);
+        }
+        
+        mb.add(utility);
+        mb.add(exit);
         
         setLayout(new FlowLayout());
         
@@ -186,7 +196,7 @@ public class Project extends JFrame implements ActionListener{
     }
     
     public static void main (String[] args){
-        new Project();
+        new Project("");
     }
     
 }
