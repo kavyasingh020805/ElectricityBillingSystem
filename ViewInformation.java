@@ -6,6 +6,8 @@ import java.awt.*;
 
 public class ViewInformation extends JFrame {
     
+    JButton cancel;
+    
     ViewInformation(){
         
         setBounds(350, 150, 850, 650);
@@ -72,6 +74,19 @@ public class ViewInformation extends JFrame {
         JLabel phone = new JLabel("");
         phone.setBounds(580, 200, 100, 20);
         add(phone);
+        
+        cancel = new JButton("Cancel");
+        cancel.setBackground(Color.black);
+        cancel.setForeground(Color.white);
+        cancel.setBounds(350, 320, 100, 40);
+        add(cancel);
+        
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/viewcustomer.jpg"));
+        Image i2 = i1.getImage().getScaledInstance(600, 300, Image.SCALE_DEFAULT);
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel image = new JLabel(i3);
+        image.setBounds(100, 350, 600, 300);
+        add(image);
         
         setVisible(true);
         
