@@ -3,12 +3,14 @@ package electricity.billing.system;
 import java.awt.Color;
 import javax.swing.*;
 import java.awt.*;
+import java.sql.*;
+import java.awt.event.*;
 
-public class ViewInformation extends JFrame {
+public class ViewInformation extends JFrame implements ActionListener{
     
     JButton cancel;
     
-    ViewInformation(){
+    ViewInformation(String meter){
         
         setBounds(350, 150, 850, 650);
         getContentPane().setBackground(Color.white);
@@ -75,11 +77,31 @@ public class ViewInformation extends JFrame {
         phone.setBounds(580, 200, 100, 20);
         add(phone);
         
+        try{
+            
+            Conn c = new Conn();
+            ResultSet rs = c.s.executeQuery("select * from customer where meter_no = '"+meter+"'");
+            
+            while (rs.next()){
+                name.setText(rs.getString("name"));
+                address.setText(rs.getString("address"));
+                city.setText(rs.getString("city"));
+                state.setText(rs.getString("state"));
+                email.setText(rs.getString("email"));
+                phone.setText(rs.getString("phone"));
+                meternumber.setText(rs.getString("meter_no"));
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
         cancel = new JButton("Cancel");
         cancel.setBackground(Color.black);
         cancel.setForeground(Color.white);
         cancel.setBounds(350, 320, 100, 40);
         add(cancel);
+        cancel.addActionListener(this);
         
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/viewcustomer.jpg"));
         Image i2 = i1.getImage().getScaledInstance(600, 300, Image.SCALE_DEFAULT);
@@ -92,8 +114,12 @@ public class ViewInformation extends JFrame {
         
     }
     
+    public void actionPerformed(ActionEvent ae){
+        setVisible(false);
+    }
+    
     public static void main(String[] args){
-        new ViewInformation();
+        new ViewInformation("");
     }
     
 }
