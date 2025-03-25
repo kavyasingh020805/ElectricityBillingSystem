@@ -6,13 +6,14 @@ import java.awt.event.*;
 
 public class Project extends JFrame implements ActionListener{
     
-    String atype;
+    String atype, meter;
             
-    Project(String atype){
+    Project(String atype, String meter){
         
         super("Electricity Billing System");
         
         this.atype = atype;
+        this.meter = meter;
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         
@@ -90,6 +91,7 @@ public class Project extends JFrame implements ActionListener{
         Image Image6 = icon6.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         ImageIcon i9 = new ImageIcon(Image6);
         viewinfo.setIcon(i9);
+        viewinfo.addActionListener(this);
         info.add(viewinfo);
         
         
@@ -192,11 +194,13 @@ public class Project extends JFrame implements ActionListener{
             new DepositDetails();
         }else if(msg.equals("Calculate Bill")){
             new CalculateBill();
+        }else if(msg.equals("View Info")){
+            new ViewInformation(meter);
         }
     }
     
     public static void main (String[] args){
-        new Project("");
+        new Project("", "");
     }
     
 }
