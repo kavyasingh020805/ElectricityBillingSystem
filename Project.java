@@ -82,6 +82,7 @@ public class Project extends JFrame implements ActionListener{
         Image Image5 = icon5.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         ImageIcon i8 = new ImageIcon(Image5);
         updateinfo.setIcon(i8);
+        updateinfo.addActionListener(this);
         info.add(updateinfo);
         
         JMenuItem viewinfo = new JMenuItem("View Info");
@@ -196,6 +197,8 @@ public class Project extends JFrame implements ActionListener{
             new CalculateBill();
         }else if(msg.equals("View Info")){
             new ViewInformation(meter);
+        }else if(msg.equals("Update Info")){
+            new UpdateInformation(meter);
         }
     }
     
