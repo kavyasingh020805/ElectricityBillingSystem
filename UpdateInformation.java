@@ -10,6 +10,7 @@ public class UpdateInformation extends JFrame implements ActionListener{
     JTextField tfaddress, tfcity, tfstate, tfemail, tfphone;
     JButton update, cancel;
     String meter;
+    JLabel name;
     
     UpdateInformation(String meter){
         
@@ -28,7 +29,7 @@ public class UpdateInformation extends JFrame implements ActionListener{
         lblname.setBounds(30, 70, 100, 20);
         add(lblname);
 
-        JLabel name = new JLabel("");  
+        name = new JLabel("");  
         name.setBounds(160, 70, 200, 20);
         add(name);
 
@@ -125,7 +126,26 @@ public class UpdateInformation extends JFrame implements ActionListener{
     }
     
     public void actionPerformed(ActionEvent ae){
-        
+        if(ae.getSource() == update){
+            String address = tfaddress.getText();
+            String city = tfcity.getText();
+            String state = tfstate.getText();
+            String email = tfemail.getText();
+            String phone = tfphone.getText();
+            
+            try{
+                Conn c = new Conn();
+                c.s.executeUpdate("update customer set address = '"+address+"', city = '"+city+"', state = '"+state+"', email = '"+email+"', phone = '"+phone+"' where meter_no ='"+meter+"'");
+                
+                JOptionPane.showMessageDialog(null, "Your details were updated successfully.");
+                setVisible(false);
+                
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }else{
+            setVisible(false);
+        }
     }
     
     public static void main(String[] args){
