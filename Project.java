@@ -116,6 +116,7 @@ public class Project extends JFrame implements ActionListener{
         Image Image8 = icon8.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         ImageIcon i11 = new ImageIcon(Image8);
         billdetails.setIcon(i11);
+        billdetails.addActionListener(this);
         user.add(billdetails);
         
         
@@ -144,6 +145,7 @@ public class Project extends JFrame implements ActionListener{
         Image Image10 = icon10.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         ImageIcon i13 = new ImageIcon(Image10);
         notepad.setIcon(i13);
+        notepad.addActionListener(this);
         utility.add(notepad);
         
         JMenuItem calculator = new JMenuItem("Calculator");
@@ -153,6 +155,7 @@ public class Project extends JFrame implements ActionListener{
         Image Image11 = icon11.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         ImageIcon i14 = new ImageIcon(Image11);
         calculator.setIcon(i14);
+        calculator.addActionListener(this);
         utility.add(calculator);
         
         
@@ -167,6 +170,7 @@ public class Project extends JFrame implements ActionListener{
         Image Image12 = icon12.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         ImageIcon i15 = new ImageIcon(Image12);
         logout.setIcon(i15);
+        logout.addActionListener(this);
         exit.add(logout);
         
         if(atype.equals("Admin")){
@@ -199,6 +203,23 @@ public class Project extends JFrame implements ActionListener{
             new ViewInformation(meter);
         }else if(msg.equals("Update Info")){
             new UpdateInformation(meter);
+        }else if(msg.equals("Bill Details")){
+            new BillDetails(meter);
+        }else if(msg.equals("Notepad")){
+            try{
+                Runtime.getRuntime().exec("notepad.exe");
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }else if(msg.equals("Calculator")){
+            try{
+                Runtime.getRuntime().exec("calc.exe");
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }else if(msg.equals("LogOut")){
+            setVisible(false);
+            new Login();
         }
     }
     
