@@ -2,12 +2,14 @@ package electricity.billing.system;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.*;
+import java.awt.event.*;
 
 public class PayBill extends JFrame{
     
     Choice month;
     
-    PayBill(){
+    PayBill(String meter){
         setLayout(null);
         setBounds(300, 150, 900, 600);
         
@@ -52,27 +54,71 @@ public class PayBill extends JFrame{
         month.add("December");
         add(month);
         
+        JLabel lblunits = new JLabel("Units");
+        lblunits.setBounds(35, 280, 100, 20);
+        add(lblunits);
+        
+        JLabel labelunits = new JLabel("");
+        labelunits.setBounds(200, 280, 200, 20);
+        add(labelunits);
+        
         JLabel lbltotalbill = new JLabel("Total Bill");
-        lbltotalbill.setBounds(35, 280, 100, 20);
+        lbltotalbill.setBounds(35, 350, 100, 20);
         add(lbltotalbill);
         
         JLabel labeltotalbill = new JLabel("");
-        labeltotalbill.setBounds(200, 280, 200, 20);
+        labeltotalbill.setBounds(200, 350, 200, 20);
         add(labeltotalbill);
         
         JLabel lblstatus = new JLabel("Status");
-        lblstatus.setBounds(35, 350, 100, 20);
+        lblstatus.setBounds(35, 420, 100, 20);
         add(lblstatus);
         
         JLabel labelstatus = new JLabel("");
-        labelstatus.setBounds(200, 350, 200, 20);
+        labelstatus.setBounds(200, 420, 200, 20);
+        labelstatus.setForeground(Color.red);
         add(labelstatus);
+        
+        try{
+            Conn c = new Conn();
+            ResultSet rs = c.s.executeQuery("select * from customer where meter_no ='"+meter+"'");
+            while(rs.next()){
+               labelmeternumber.setText(meter);
+               labelname.setText(rs.getString("name"));
+            }
+            
+            rs = c.s.executeQuery("select * from bill where meter_no ='"+meter+"'and month ='"+month.getSelectedItem()+"'");
+            while(rs.next()){
+               labelunits.setText(rs.getString("units"));
+               labeltotalbill.setText(rs.getString("total_bill"));
+               labelstatus.setText(rs.getString("status"));
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        month.addItemListener(new ItemListener(){
+            public void itemStateChanged(ItemEvent ae){
+                try{
+                    Conn c = new Conn();
+                    ResultSet rs = c.s.executeQuery("select * from bill where meter_no ='"+meter+"'and month ='"+month.getSelectedItem()+"'");
+                    while(rs.next()){
+                        labelunits.setText(rs.getString("units"));
+                        labeltotalbill.setText(rs.getString("total_bill"));
+                        labelstatus.setText(rs.getString("status"));
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+        }
+        });
         
         setVisible(true);
     }
     
     public static void main(String[] args){
-        new PayBill();
+        new PayBill("");
     }
     
 }
