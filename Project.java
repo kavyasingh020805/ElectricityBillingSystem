@@ -107,6 +107,7 @@ public class Project extends JFrame implements ActionListener{
         Image Image7 = icon7.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         ImageIcon i10 = new ImageIcon(Image7);
         paybill.setIcon(i10);
+        paybill.addActionListener(this);
         user.add(paybill);
         
         JMenuItem billdetails = new JMenuItem("Bill Details");
@@ -220,6 +221,8 @@ public class Project extends JFrame implements ActionListener{
         }else if(msg.equals("LogOut")){
             setVisible(false);
             new Login();
+        }else if(msg.equals("Pay Bill")){
+            new PayBill(meter);
         }
     }
     
@@ -227,4 +230,4 @@ public class Project extends JFrame implements ActionListener{
         new Project("", "");
     }
     
-}
+} 
