@@ -136,7 +136,7 @@ public class NewCustomer extends JFrame implements ActionListener {
                 c.s.executeUpdate(query2);
                 
                 JOptionPane.showMessageDialog(null, "Customer Details added successfully");
-                
+                setVisible(false);
                 new MeterInfo(meter);
             }catch(Exception e){
                 e.printStackTrace();
