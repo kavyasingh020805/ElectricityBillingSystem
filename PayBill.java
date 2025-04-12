@@ -5,11 +5,15 @@ import java.awt.*;
 import java.sql.*;
 import java.awt.event.*;
 
-public class PayBill extends JFrame{
+public class PayBill extends JFrame implements ActionListener{
     
     Choice month;
+    JButton pay, back;
+    String meter;
     
     PayBill(String meter){
+        this.meter=meter;
+        
         setLayout(null);
         setBounds(300, 150, 900, 600);
         
@@ -114,7 +118,46 @@ public class PayBill extends JFrame{
         }
         });
         
+        pay = new JButton("Pay");
+        pay.setBackground(Color.BLACK);
+        pay.setForeground(Color.white);
+        pay.setBounds(100, 480, 100, 30);
+        pay.addActionListener(this);
+        add(pay);
+        
+        back = new JButton("Back");
+        back.setBackground(Color.BLACK);
+        back.setForeground(Color.white);
+        back.setBounds(230, 480, 100, 30);
+        back.addActionListener(this);
+        add(back);
+        
+        getContentPane().setBackground(Color.white);
+        
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/bill.png"));
+        Image i2 = i1.getImage().getScaledInstance(600, 300, Image.SCALE_DEFAULT);
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel image =new JLabel(i3);
+        image.setBounds(400,100,600,300);
+        add(image);
+        
         setVisible(true);
+    }
+    
+    public void actionPerformed(ActionEvent ae){
+        if(ae.getSource() == pay){
+            try{
+                Conn c = new Conn();
+                c.s.executeUpdate("update bill set status = 'paid' where meter_no = '"+meter+"' and month = '"+month.getSelectedItem()+"'");
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            setVisible(false);
+            new Paytm(meter);
+            
+        }else{
+            setVisible(false);
+        }
     }
     
     public static void main(String[] args){
