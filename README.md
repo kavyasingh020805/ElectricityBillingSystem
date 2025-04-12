@@ -31,30 +31,7 @@ By shifting to an automated billing system, the project eliminates the need for 
 
 ---
 
-🛠️ Setup Instructions
-1. Clone the Repository
-git clone https://github.com/yourusername/electricity-billing-system.git
-cd electricity-billing-system
 
-3. Setup MySQL Database
-Open the .txt file located in the database/ folder using MySQL Workbench or any MySQL client.
-Execute the script to create all necessary tables:
-login
-customer
-meter_info
-bill
-tax_rent
-You can insert sample data provided in the file or add your own.
-
-4. Configure JDBC Connection
-Ensure the MySQL JDBC Driver (mysql-connector-java-x.x.xx.jar) is added to your project’s classpath.
-Open the Conn.java file (or your database connection class).
-Update the database URL, username, and password as per your local MySQL setup.
-
-Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/ebs", "yourUsername", "yourPassword");
-
-4. Run the Application
-Compile and run the Login.java file (your entry point).
 Use the sample credentials from the login table to log in as Admin or Customer.
 
 🔗 Paytm Integration
