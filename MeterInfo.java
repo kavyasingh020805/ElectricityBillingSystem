@@ -11,10 +11,10 @@ public class MeterInfo extends JFrame implements ActionListener {
     JButton cancel, next;
     JLabel lblmeter;
     Choice meterlocation, metertype, phasecode, billtype;
-    String meternumber;
+    String meter;
     
-    MeterInfo(String meternumber){ 
-        this.meternumber = meternumber;      
+    MeterInfo(String meter){ 
+        this.meter = meter;      
         
         setSize(650, 500);
         setLocation(400,200);
@@ -33,7 +33,7 @@ public class MeterInfo extends JFrame implements ActionListener {
         lblname.setBounds(100, 80, 100, 20);
         p.add(lblname);
         
-        JLabel lblmeternumber = new JLabel(meternumber);
+        JLabel lblmeternumber = new JLabel(meter);
         lblmeternumber.setBounds(220, 80, 100, 20);
         p.add(lblmeternumber);
         
@@ -125,14 +125,14 @@ public class MeterInfo extends JFrame implements ActionListener {
     
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == next){
-            String meter = meternumber;
+            String meterno = meter;
             String location = meterlocation.getSelectedItem();
             String type = metertype.getSelectedItem();
             String code = phasecode.getSelectedItem();
             String typebill = billtype.getSelectedItem();
             String day = "30";
             
-            String query = "insert into meter_info values('"+meter+"','"+location+"','"+type+"','"+code+"','"+typebill+"','"+day+"')";
+            String query = "insert into meter_info values('"+meterno+"','"+location+"','"+type+"','"+code+"','"+typebill+"','"+day+"')";
             
             try{
                 Conn c = new Conn();
