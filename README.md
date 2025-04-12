@@ -31,10 +31,3 @@ By shifting to an automated billing system, the project eliminates the need for 
 
 ---
 
-
-Use the sample credentials from the login table to log in as Admin or Customer.
-
-🔗 Paytm Integration
-The Paytm.java class attempts to open the Paytm Online Payment page using the system’s default browser.
-
-For systems that do not support JEditorPane to render external web content, it is recommended to use java.awt.Desktop instead.
