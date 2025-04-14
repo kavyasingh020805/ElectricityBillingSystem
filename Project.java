@@ -132,6 +132,7 @@ public class Project extends JFrame implements ActionListener{
         Image Image9 = icon9.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         ImageIcon i12 = new ImageIcon(Image9);
         generatebill.setIcon(i12);
+        generatebill.addActionListener(this);
         report.add(generatebill);
         
         
