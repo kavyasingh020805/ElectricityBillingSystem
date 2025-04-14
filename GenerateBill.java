@@ -101,9 +101,9 @@ public class GenerateBill extends JFrame implements ActionListener{
             if(rs.next()) {
                 area.append("\n");
                 area.append("\n    Cost Per Unit: " + rs.getString("cost_per_unit"));
-                area.append("\n    Meter Rent:     " + rs.getString("cost_per_unit"));
+                area.append("\n    Meter Rent:     " + rs.getString("meter_rent"));
                 area.append("\n    Service Charge:        " + rs.getString("service_charge"));
-                area.append("\n    Service Tax:          " + rs.getString("service_charge"));
+                area.append("\n    Service Tax:          " + rs.getString("service_tax"));
                 area.append("\n    Swacch Bharat Cess:                " + rs.getString("swacch_bharat_cess"));
                 area.append("\n    Fixed Tax: " + rs.getString("fixed_tax"));
                 area.append("\n");
@@ -115,9 +115,9 @@ public class GenerateBill extends JFrame implements ActionListener{
                 area.append("\n");
                 area.append("\n    Current Month: " + rs.getString("month"));
                 area.append("\n    Units Consumed:     " + rs.getString("units"));
-                area.append("\n    Total Charges:        " + rs.getString("totalbill"));
+                area.append("\n    Total Charges:        " + rs.getString("total_bill"));
                 area.append("\n-------------------------------------------------------");
-                area.append("\n    Total Payable: " + rs.getString("totalbill"));
+                area.append("\n    Total Payable: " + rs.getString("total_bill"));
                 area.append("\n");
             }
         } catch (Exception e) {
