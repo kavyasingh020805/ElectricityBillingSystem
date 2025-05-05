@@ -7,7 +7,6 @@ Electricity billing is a crucial aspect of utility management, but traditional m
 The system is developed using Java Swing for the user interface and MySQL for backend database management. It includes two types of users: Admin and Customer. The admin is responsible for managing customer details, recording monthly electricity usage, and overseeing bill calculations. Once the usage data is entered, the system automatically computes the bill based on predefined tariffs and updates the customer’s account. Customers can log in to their accounts to check their electricity consumption, view their generated bills, and make payments before the due date.
 By shifting to an automated billing system, the project eliminates the need for physical visits, minimizes human errors, and enhances accessibility. The secure database ensures proper storage of customer records, payment history, and usage statistics, making tracking and management seamless. This system not only improves the efficiency of bill generation but also provides a convenient, transparent, and reliable solution for both customers and electricity providers. Our goal is to modernize the billing process, ensuring accuracy, efficiency, and ease of access in electricity bill payments.
 
-
 ---
 
 ## 🚀 Features
@@ -31,4 +30,3 @@ By shifting to an automated billing system, the project eliminates the need for 
 - **Tools**: JDBC, MySQL Workbench
 
 ---
-
